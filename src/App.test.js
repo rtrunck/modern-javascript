@@ -4,62 +4,6 @@ import App from './App'
 
 // Variables
 
-test('should expect true', () => {
-  // Your journey begins here: Replace the word false with true
-  expect(true).toBeTruthy()
-})
-
-test('var is initialized to undefined', () => {
-  var initial
-  expect(initial).toEqual(undefined)
-})
-
-test('variables are function scoped', () => {
-  var expectedValue = 2
-  var actualValue = 1 + 1
-
-  function scopedFunction() {
-    var scopedVar = 3
-  }
-  expect(actualValue === expectedValue).toBeTruthy()
-  //Fix
-  // expect(scopedVar).toEqual(3)
-})
-
-test('var get hoisted', () => {
-  var expectedValue = 2
-  var actualValue = 1 + 1
-
-  for (var chr of '😲😺') {
-    var lastChr = chr
-  }
-  expect(actualValue === expectedValue).toBeTruthy()
-  //Fill this in
-  expect(lastChr).toEqual('😺')
-})
-
-test('let does not get hoisted -> it is block scoped', () => {
-  let expectedValue = 2
-  let actualValue = 1 + 1
-
-  for (var chr of '😲😺') {
-    let lastChr = chr
-  }
-  expect(actualValue === expectedValue).toBeTruthy()
-  //Fix this broken test
-  // expect(lastChr).toEqual('😺')
-})
-
-test('const cannot be reassigned', () => {
-  // const should be used most of the time
-  const initialValue = 3
-
-  // Fix
-  // initialValue = 2
-
-  expect(initialValue === 3).toBeTruthy()
-})
-
 /*
 Summary
 var:
@@ -76,61 +20,118 @@ const:
   can't be reassigned
   */
 
+test('should expect true', () => {
+  // Your journey begins here: Replace the word false with true
+  // Fix
+  expect(false).toBeTruthy()
+})
 
-// Types
+test('var is initialized to undefined', () => {
+  // Implement
+  var initial
+  expect(initial).toBeDefined()
+})
+
+test('variables are function scoped', () => {
+  var expectedValue = 2
+  var actualValue = 1 + 1
+
+  function scopedFunction() {
+    var scopedVar = 3
+  }
+
+  // Implement
+  expect(actualValue === expectedValue)
+  // Move
+  expect(scopedVar).toEqual(3)
+})
+
+test('var gets hoisted', () => {
+
+  for (var chr of '😲😺') {
+    var lastChr = chr
+  }
+
+  //Fill this in
+  expect(lastChr).toEqual()
+})
+
+test('let does not get hoisted -> it is block scoped', () => {
+
+  for (var chr of '😲😺') {
+    let lastChr = chr
+  }
+
+  // Move
+  expect(lastChr).toBeTruthy()
+})
+
+test('const cannot be reassigned', () => {
+  // const should be used most of the time
+  const initialValue = 3
+
+  // Fix
+  initialValue = 2
+
+  expect(initialValue === 3).toBeTruthy()
+})
+
+
+// Types 
+
+/*
+Types summary:
+
+undefined : typeof instance === 'undefined'
+Boolean : typeof instance === 'boolean'
+Number : typeof instance === 'number'
+String : typeof instance === 'string'
+BigInt : typeof instance === 'bigint'
+Symbol : typeof instance === 'symbol'
+*/
 
 test('types can change', () => {
   let foo = 42 // foo is now a number
   foo = 'bar' // foo is now a string
   foo = true  // foo is now a boolean
-  //Fix 
-  expect(foo).toBeTruthy()
-  expect(typeof foo).toEqual('boolean')
+
+  // Fix 
+  expect(foo).toBeFalsy()
+  // Implement
+  expect(typeof foo).toEqual()
 })
 
 test('about strings', () => {
   const jsString = 'Javascript strings can do many things'
 
   const wordArray = jsString.split(' ')
-  // Fix
-  expect(wordArray[0]).toEqual('Javascript')
+  // Implement
+  expect(wordArray[0]).toEqual()
 })
 
 test('numbers', () => {
   let aNumber = 42
   let bNumber = 6
 
-  //Fix
-  expect(6 * 42).toEqual(aNumber * bNumber)
-  expect(++aNumber).toEqual(43)
-  expect(bNumber--).toEqual(6)
+  // Implement
+  expect(6 * 42).toEqual()
+  expect(++aNumber).toEqual()
+  expect(bNumber--).toEqual()
 })
 
-test('objects are a bunch of keys and values', () => {
+test('objects are composed of keys and values', () => {
   const user = {
     name: 'Bat Man',
     car: 'Batmobile'
   }
   const name = user.name
-  //Fix 
-  expect(name).toEqual('Bat Man')
+  // Implement
+  expect(name).toEqual()
 
 })
 
-/*
-Types summary:
 
-undefined : typeof instance === "undefined"
-Boolean : typeof instance === "boolean"
-Number : typeof instance === "number"
-String : typeof instance === "string"
-BigInt : typeof instance === "bigint"
-Symbol : typeof instance === "symbol"
-*/
-
-// Objects, Arrays and Destructuring
-
-test('you can get object values many ways', () => {
+test('you can get object values in many ways', () => {
   const user = {
     name: 'Bat Man',
     car: 'Batmobile',
@@ -138,42 +139,40 @@ test('you can get object values many ways', () => {
   }
 
   const { name, car } = user
-  //Fix
-  expect(car).toEqual('Batmobile')
-  expect(user.car).toEqual('Batmobile')
-  expect(user['car']).toEqual('Batmobile')
+  
+  // Implement
+  expect(car).toEqual()
+  expect(user.name).toEqual()
+  expect(user['outfit']).toEqual()
 })
 
-test('arrays can destructure as well ', () => {
+test('arrays destructure as well ', () => {
   const user = ['Ryan', '@rtrunck', 'Denver, CO']
-  const name = user[0]
+  const name = user.slice(0, 1)
 
   const [, _, location] = user
 
-  // Fix
-  expect(name === 'Ryan').toBeTruthy()
-  expect(location).toEqual('Denver, CO')
+  // Implement
+  expect(name === 'Ryan')
+  expect(location).toEqual()
 })
 
 test('named destruturing', () => {
   const software = {
-    l: 'Ecma Script',
+    l: 'Javascript',
     c: 'Brendan Eich'
   }
 
   const { l: language, c: creator } = software
-  //Fix
-  expect('Ecma Script').toEqual(language)
+
+  // Implement
+  expect().toEqual(language)
 })
 
-test('object values can be objects, functions, manythings', () => {
+test('object values can be objects, functions, etc.', () => {
 
   function multiplication(x, y) {
     return x * y
-  }
-
-  const newFunction = (x, y) => {
-    return x*y
   }
 
   const object = {
@@ -188,14 +187,14 @@ test('object values can be objects, functions, manythings', () => {
     multiplication // Shorthand
   }
 
-  //Fix
-  expect(object.attributes.fun).toEqual('absolutely')
-  expect(object.addition(40, 2)).toEqual(42)
-  expect(object.multiplication(40, 2)).toEqual(80)
+  // Implement 
+  expect(object.attributes.fun).toEqual()
+  expect(object.addition(40, 2)).toEqual()
+  expect(object.multiplication(40, 2)).toEqual()
 
 })
 
-test('computed property names simplify', () => {
+test('computed property names can simplify', () => {
   function objectify (key, value) {
     let obj = {}
     obj[key] = value
@@ -204,8 +203,8 @@ test('computed property names simplify', () => {
 
   const obj = objectify('name', 'Ryan')
 
-  // Fix
-  expect(obj).toEqual({name: 'Ryan'})
+  // Implement
+  expect().toEqual({name: 'Ryan'})
 
   const object = (key, value) => {
     return {
@@ -213,13 +212,11 @@ test('computed property names simplify', () => {
     }
   }
 
-  // Fix
-  expect(obj).toEqual({name: 'Ryan'})
-
-
+  // Implement
+  expect(object('name', 'Ryan')).toEqual()
 })
-//Template literals
 
+//Template literals
 
 test('template literals', () => {
   function sayHello (name, email) {
@@ -230,33 +227,45 @@ test('template literals', () => {
   const name = 'Bat Man'
   const email = 'bat@man.com'
 
-  expect(sayHello(name, email )).toEqual(`Hey ${name} We'll send you an email at ${email}`)
+  // Implement
+  expect().toEqual(`Hey ${name} We'll send you an email at ${email}`)
 })
 
-test('template literals also make writing React much easier', () => {
-  function makeGreetingTemplate (name, email) {
-      return '<div>' +
-        '<h1>Hello, ' + name +
-      '.</h1>' +
-      "<p>We've emailed you at " +
-      email +
-      '. ' +
-      '</div>'
+//Arrow functions
 
+test('putting the fun in functions', () => {
+
+  // Implement
+  expect(declarationAdd(5, 4)).toEqual(9)
+
+  // Move
+  expect(expressionAdd(5, 6)).toEqual(11)
+
+  // Function declaration
+  // Hoisted
+  // Must be declared with function
+  function declarationAdd (x, y) {
+    return x + y
   }
 
-  const name = 'Bat Man'
-  const email = 'bat@man.com'
+  // Function expression
+  // Not hoisted
+  const expressionAdd = function (x, y) {
+    return x + y
+  }
 
-  const template = `
-    <div>
-      <h1>Hello, ${name}</h1>
-      <p>
-        We've email you at ${email}.
-      </p>
-    </div>
-  `
-  expect(template).to(makeGreetingTemplate(name, email ))
+  // Arrow function, also an expression
+  const arrowAdd = (x, y) => {
+    return x + y
+  }
+
+  // Implement
+  expect(arrowAdd()).toEqual()
+
+  // Arrow function implicit return
+  const arrowImplicitAdd = (x, y) => x + y
+
+  // Implement
+  expect(arrowImplicitAdd()).toEqual()
 
 })
-//Arrow functions
