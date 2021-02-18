@@ -23,12 +23,12 @@ const:
 test('should expect true', () => {
   // Your journey begins here: Replace the word false with true
   // Fix
-  expect(false).toBeTruthy()
+  expect(true).toBeTruthy()
 })
 
 test('var is initialized to undefined', () => {
   // Implement
-  var initial
+  var initial = "something"
   expect(initial).toBeDefined()
 })
 
@@ -38,12 +38,12 @@ test('variables are function scoped', () => {
 
   function scopedFunction() {
     var scopedVar = 3
+    expect(scopedVar).toEqual(3)
   }
 
   // Implement
   expect(actualValue === expectedValue)
-  // Move
-  expect(scopedVar).toEqual(3)
+
 })
 
 test('var gets hoisted', () => {
@@ -53,31 +53,28 @@ test('var gets hoisted', () => {
   }
 
   //Fill this in
-  expect(lastChr).toEqual()
+  expect(lastChr).toEqual(chr)
 })
 
 test('let does not get hoisted -> it is block scoped', () => {
 
   for (var chr of '😲😺') {
     let lastChr = chr
+    expect(lastChr).toBeTruthy()
   }
 
-  // Move
-  expect(lastChr).toBeTruthy()
 })
 
 test('const cannot be reassigned', () => {
   // const should be used most of the time
   const initialValue = 3
 
-  // Fix
-  initialValue = 2
 
   expect(initialValue === 3).toBeTruthy()
 })
 
 
-// Types 
+// Types
 
 /*
 Types summary:
@@ -95,10 +92,10 @@ test('types can change', () => {
   foo = 'bar' // foo is now a string
   foo = true  // foo is now a boolean
 
-  // Fix 
-  expect(foo).toBeFalsy()
+  // Fix
+  expect(foo).toBeTruthy()
   // Implement
-  expect(typeof foo).toEqual()
+  expect(typeof foo).toEqual('boolean')
 })
 
 test('about strings', () => {
@@ -106,7 +103,7 @@ test('about strings', () => {
 
   const wordArray = jsString.split(' ')
   // Implement
-  expect(wordArray[0]).toEqual()
+  expect(wordArray[0]).toEqual('Javascript')
 })
 
 test('numbers', () => {
@@ -114,9 +111,9 @@ test('numbers', () => {
   let bNumber = 6
 
   // Implement
-  expect(6 * 42).toEqual()
-  expect(++aNumber).toEqual()
-  expect(bNumber--).toEqual()
+  expect(6 * 42).toEqual(252)
+  expect(++aNumber).toEqual(43)
+  expect(bNumber--).toEqual(6)
 })
 
 test('objects are composed of keys and values', () => {
@@ -126,7 +123,7 @@ test('objects are composed of keys and values', () => {
   }
   const name = user.name
   // Implement
-  expect(name).toEqual()
+  expect(name).toEqual('Bat Man')
 
 })
 
@@ -139,11 +136,11 @@ test('you can get object values in many ways', () => {
   }
 
   const { name, car } = user
-  
+
   // Implement
-  expect(car).toEqual()
-  expect(user.name).toEqual()
-  expect(user['outfit']).toEqual()
+  expect(car).toEqual('Batmobile')
+  expect(user.name).toEqual('Bat Man')
+  expect(user['outfit']).toEqual('Cape')
 })
 
 test('arrays destructure as well ', () => {
@@ -154,7 +151,7 @@ test('arrays destructure as well ', () => {
 
   // Implement
   expect(name === 'Ryan')
-  expect(location).toEqual()
+  expect(location).toEqual('Denver, CO')
 })
 
 test('named destruturing', () => {
@@ -166,7 +163,7 @@ test('named destruturing', () => {
   const { l: language, c: creator } = software
 
   // Implement
-  expect().toEqual(language)
+  expect(software.l).toEqual(language)
 })
 
 test('object values can be objects, functions, etc.', () => {
@@ -187,10 +184,10 @@ test('object values can be objects, functions, etc.', () => {
     multiplication // Shorthand
   }
 
-  // Implement 
-  expect(object.attributes.fun).toEqual()
-  expect(object.addition(40, 2)).toEqual()
-  expect(object.multiplication(40, 2)).toEqual()
+  // Implement
+  expect(object.attributes.fun).toEqual('absolutely')
+  expect(object.addition(40, 2)).toEqual(42)
+  expect(object.multiplication(40, 2)).toEqual(80)
 
 })
 
@@ -204,7 +201,7 @@ test('computed property names can simplify', () => {
   const obj = objectify('name', 'Ryan')
 
   // Implement
-  expect().toEqual({name: 'Ryan'})
+  expect(obj).toEqual({name: 'Ryan'})
 
   const object = (key, value) => {
     return {
@@ -213,7 +210,7 @@ test('computed property names can simplify', () => {
   }
 
   // Implement
-  expect(object('name', 'Ryan')).toEqual()
+  expect(object('name', 'Ryan')).toEqual({name: 'Ryan'})
 })
 
 //Template literals
@@ -228,7 +225,7 @@ test('template literals', () => {
   const email = 'bat@man.com'
 
   // Implement
-  expect().toEqual(`Hey ${name} We'll send you an email at ${email}`)
+  expect(sayHello('Bat Man', 'bat@man.com')).toEqual(`Hey ${name} We'll send you an email at ${email}`)
 })
 
 //Arrow functions
@@ -239,7 +236,7 @@ test('putting the fun in functions', () => {
   expect(declarationAdd(5, 4)).toEqual(9)
 
   // Move
-  expect(expressionAdd(5, 6)).toEqual(11)
+  //expect(expressionAdd(5, 6)).toEqual(11)
 
   // Function declaration
   // Hoisted
@@ -253,6 +250,7 @@ test('putting the fun in functions', () => {
   const expressionAdd = function (x, y) {
     return x + y
   }
+  expect(expressionAdd(5, 6)).toEqual(11)
 
   // Arrow function, also an expression
   const arrowAdd = (x, y) => {
@@ -260,12 +258,12 @@ test('putting the fun in functions', () => {
   }
 
   // Implement
-  expect(arrowAdd()).toEqual()
+  expect(arrowAdd(5, 5)).toEqual(10)
 
   // Arrow function implicit return
   const arrowImplicitAdd = (x, y) => x + y
 
   // Implement
-  expect(arrowImplicitAdd()).toEqual()
+  expect(arrowImplicitAdd(4, 5)).toEqual(9)
 
 })
